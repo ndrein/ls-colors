@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Modify system environment to colourize ls based on file extensions
+Modify system environment to colorize ls based on file extensions
 """
 
 from tempfile import NamedTemporaryFile

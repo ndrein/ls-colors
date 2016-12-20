@@ -11,6 +11,7 @@ def ls(args):
     Command(args).run()
 
 
+# Only colorize output if the output is going to a terminal
 if stdout.isatty():
     colourize_ls(argv)
     ls(argv)
