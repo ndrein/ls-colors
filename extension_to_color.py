@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-from subprocess import Popen, PIPE
+"""
+Associate a color with each extension in the requested directory
+"""
+
 from json import load
 from command import Command
 

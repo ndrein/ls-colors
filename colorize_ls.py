@@ -11,6 +11,8 @@ from command import Command
 
 def format_ext(ext, color):
     """
+    Format ext to add to `dircolors -p`
+
     Eg.
     .txt 00;38
 
