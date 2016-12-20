@@ -9,7 +9,7 @@ COLORS = load(open('colors.json'))['colors']
 
 
 def get_ls_lines(cmd_lst):
-    return Command(cmd_lst).get_stdout_lines()
+    return Command(cmd_lst).stdout_lines()
 
 
 def get_ext(line):
@@ -29,4 +29,11 @@ def get_color(extension):
 
 
 def get_extension_to_color(cmd_lst):
+    """
+    Takes the 'ls' command list, and returns a dict
+    mapping from extension to a colour
+
+    :param cmd_lst: list
+    :return: {str -> int}
+    """
     return {ext: get_color(ext) for ext in get_extensions(cmd_lst)}

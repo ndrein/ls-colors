@@ -3,7 +3,7 @@ from subprocess import Popen, PIPE
 
 
 class Command:
-    def __init__(command_list):
+    def __init__(self, command_list):
         """"
         :param command: str
         :param args: iterable of str
