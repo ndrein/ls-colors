@@ -34,7 +34,7 @@ def get_dircolors_from_file(filename):
 
 
 def run_dircolors(dircolors):
-    tmp = NamedTemporaryFile()
+    tmp = NamedTemporaryFile(mode='w+t')
     try:
         tmp.write(dircolors)
         get_dircolors_from_file(tmp.name)

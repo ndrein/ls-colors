@@ -22,4 +22,4 @@ class Command:
         """
         Return a generator of lines without whitespace
         """
-        return (line.decode('utf-8').strip() for line in self.run().stdout)
+        return [line.decode('utf-8').strip() for line in self.run().stdout]
