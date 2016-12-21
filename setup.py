@@ -5,4 +5,5 @@ setup(name='ls-colors',
       description='Shell utility for colouring ls',
       author='Noah Reinhardt',
       author_email='ndrein@gmail.com',
+      packages=['ls_colors'],
       scripts=['bin/ls'])
