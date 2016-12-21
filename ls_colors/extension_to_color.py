@@ -4,8 +4,8 @@ Associate a color with each extension in the requested directory
 """
 
 from json import load
-from command import Command
 
+from ls_colors.command import Command
 
 COLORS_FILE = 'colors.json'
 COLORS = load(open('colors.json'))['colors']
