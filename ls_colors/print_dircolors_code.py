@@ -3,10 +3,11 @@
 Modify system environment to colorize ls based on file extensions
 """
 
+from sys import argv
 from os import remove, system
 from tempfile import NamedTemporaryFile
-from sys import exit
-from subprocess import check_output, call
+from sys import exit, stdout
+from subprocess import check_output, call, PIPE
 
 from extension_to_color import get_extension_to_color
 
@@ -32,7 +33,8 @@ def get_dircolors(ext_to_color):
 
 
 def get_dircolors_from_file(filename):
-    call(['dircolors'] + ['-b'] + [filename])
+    output = check_output(['dircolors'] + ['-b'] + [filename]).decode('utf-8')
+    print(output)
 
 
 def run_dircolors(dircolors):
@@ -48,6 +50,9 @@ def run_dircolors(dircolors):
         pass
 
 
-def colourize_ls(ls_args):
+def print_dircolors_code(ls_args):
     ext_to_color = get_extension_to_color(ls_args)
     run_dircolors(get_dircolors(ext_to_color))
+
+if __name__ == '__main__':
+    print_dircolors_code(argv[1:])

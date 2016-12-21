@@ -3,11 +3,11 @@
 Associate a color with each extension in the requested directory
 """
 
+from hashlib import md5
 from subprocess import check_output
 from json import load
 from os.path import abspath, join, dirname
 
-# from command import Command
 
 COLORS_FILE = 'colors.json'
 # ./COLORS_FILE
@@ -31,7 +31,7 @@ def get_extensions(ls_args):
 
 
 def get_color(extension):
-    return COLORS[hash(extension) % len(COLORS)]
+    return COLORS[int(md5(extension.encode()).hexdigest(), 16) % len(COLORS)]
 
 
 def get_extension_to_color(ls_args):
