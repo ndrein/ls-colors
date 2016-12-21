@@ -4,11 +4,13 @@ Associate a color with each extension in the requested directory
 """
 
 from json import load
+from os.path import abspath, join, dirname
 
 from ls_colors.command import Command
 
 COLORS_FILE = 'colors.json'
-COLORS = load(open('colors.json'))['colors']
+# ./COLORS_FILE
+COLORS = load(open(join(dirname(abspath(__file__)), 'colors.json')))['colors']
 
 
 def get_ls_lines(cmd_lst):

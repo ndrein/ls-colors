@@ -6,7 +6,6 @@ Modify system environment to colorize ls based on file extensions
 from tempfile import NamedTemporaryFile
 
 from ls_colors.extension_to_color import get_extension_to_color
-
 from ls_colors.command import Command
 
 
