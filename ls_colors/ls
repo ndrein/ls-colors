@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
-eval $(./print_dircolors_code.py $@)
+function script_dir {
+    echo $(dirname $0)
+}
+
+eval $($(script_dir)/print_dircolors_code.py $@)
+
 ls --color=auto $@
