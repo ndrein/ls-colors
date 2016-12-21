@@ -3,10 +3,12 @@
 Modify system environment to colorize ls based on file extensions
 """
 
+from os import remove, system
 from tempfile import NamedTemporaryFile
+from sys import exit
+from subprocess import check_output, call
 
-from ls_colors.extension_to_color import get_extension_to_color
-from ls_colors.command import Command
+from extension_to_color import get_extension_to_color
 
 
 def format_ext(ext, color):
@@ -18,30 +20,34 @@ def format_ext(ext, color):
 
     :return: str
     """
-    return '.{ext} 00;{color}'.format(ext=ext, color=color)
+    return '.{ext} 00;{color}\n'.format(ext=ext, color=color)
 
 
 def get_dircolors(ext_to_color):
     """
     :return: str
     """
-    return '\n'.join(Command(['dircolors', '-p']).stdout_lines() + \
-            [format_ext(ext, color) for ext, color in ext_to_color.items()])
+    return check_output('dircolors -p').decode('utf-8') + \
+           ''.join(format_ext(ext, color) for ext, color in ext_to_color.items())
 
 
 def get_dircolors_from_file(filename):
-    Command(['dircolors', '-b', filename]).run()
+    call('dircolors -b {}'.format(filename))
 
 
 def run_dircolors(dircolors):
-    tmp = NamedTemporaryFile(mode='w+t')
     try:
+        tmp = NamedTemporaryFile(mode='w+t', delete=False)
         tmp.write(dircolors)
-        get_dircolors_from_file(tmp.name)
-    finally:
         tmp.close()
 
+        get_dircolors_from_file(tmp.name)
 
-def colourize_ls(cmd_lst):
-    ext_to_color = get_extension_to_color(cmd_lst)
+        remove(tmp.name)
+    except FileNotFoundError:
+        pass
+
+
+def colourize_ls(ls_args):
+    ext_to_color = get_extension_to_color(ls_args)
     run_dircolors(get_dircolors(ext_to_color))

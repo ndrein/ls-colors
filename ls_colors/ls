@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+"""
+Replacement for ls
+"""
+from sys import stdout, argv
+from os import system
+from subprocess import call
+
+from colorize_ls import colourize_ls
+
+
+def get_ls_args():
+    return argv[1:]
+
+
+def ls(ls_args):
+    call('ls ' + ls_args, shell=True)
+
+
+# Only colorize output if the output is going to a terminal
+if stdout.isatty():
+    colourize_ls(argv)
+    ls(get_ls_args())
