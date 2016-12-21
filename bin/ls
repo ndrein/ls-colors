@@ -4,6 +4,6 @@ function script_dir {
     echo $(dirname $0)
 }
 
-eval $($(script_dir)/print_dircolors_code.py $@)
+eval $($(script_dir)/../ls_colors/print_dircolors_code.py $@)
 
 ls --color=auto $@
