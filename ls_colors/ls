@@ -14,10 +14,12 @@ def get_ls_args():
 
 
 def ls(ls_args):
-    call('ls ' + ls_args, shell=True)
+    call(['ls'] + ls_args, shell=True)
 
 
 # Only colorize output if the output is going to a terminal
 if stdout.isatty():
-    colourize_ls(argv)
-    ls(get_ls_args())
+    ls_args = get_ls_args()
+
+    colourize_ls(ls_args)
+    ls(ls_args)

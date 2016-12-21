@@ -27,12 +27,12 @@ def get_dircolors(ext_to_color):
     """
     :return: str
     """
-    return check_output('dircolors -p').decode('utf-8') + \
+    return check_output(['dircolors'] + ['-p']).decode('utf-8') + \
            ''.join(format_ext(ext, color) for ext, color in ext_to_color.items())
 
 
 def get_dircolors_from_file(filename):
-    call('dircolors -b {}'.format(filename))
+    call(['dircolors'] + ['-b'] + [filename])
 
 
 def run_dircolors(dircolors):
