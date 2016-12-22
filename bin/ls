@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 script=$0
-root_dir=$dirname($(dirname $script))
+root_dir=$(dirname $(dirname $script))
 
-eval $($(root_dir)/ls_colors/print_dircolors_code.py $@)
+eval $($root_dir/ls_colors/print_dircolors_code.py $@)
 
 ls --color=auto $@
