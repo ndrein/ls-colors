@@ -3,6 +3,6 @@
 script=$0
 root_dir=$(dirname $(dirname $script))
 
-eval $($root_dir/ls_colors/print_dircolors_code.py $@)
+eval $(python3 $root_dir/ls_colors/print_dircolors_code.py $@)
 
 ls --color=auto $@
