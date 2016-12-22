@@ -3,6 +3,8 @@
 script=$0
 root_dir=$(dirname $(dirname $script))
 
+# Modify this scripts environment with LS_COLORS
 eval $(python3 $root_dir/ls_colors/print_dircolors_code.py $@)
 
+# Make the actual call to `ls`
 ls --color=auto $@

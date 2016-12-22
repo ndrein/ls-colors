@@ -9,28 +9,54 @@ from json import load
 from os.path import abspath, join, dirname
 
 
+# Where to get the colour codes for ls
 COLORS_FILE = 'colors.json'
 # ./COLORS_FILE
 COLORS = load(open(join(dirname(abspath(__file__)), 'colors.json')))['colors']
 
 
 def get_ls_lines(ls_args):
+    """
+    Get output from ls
+
+    Suppresses error output
+
+    >>> get_ls_lines(get_ls_lines(['-al', 'my/folder'])
+    ['file.cc', 'file.h']
+
+    :param ls_args: list of str
+    :return: list of str
+    :raises: CalledProcessError
+    """
     return check_output(['ls'] + ls_args, stderr=DEVNULL).decode('utf-8').splitlines()
 
 
-def get_ext(line):
-    return line.split('.')[-1]
+def get_ext(filename):
+    """Get a filename's extension"""
+    return filename.split('.')[-1]
 
 
-def has_ext(line):
-    return '.' in line and not line.startswith('.')
+def has_ext(filename):
+    return '.' in filename and not filename.startswith('.')
 
 
 def get_extensions(ls_args):
+    """
+    Get the file extensions given an ls query
+
+    :param ls_args: list
+    :return: set
+    """
     return {get_ext(line) for line in get_ls_lines(ls_args) if has_ext(line)}
 
 
 def get_color(extension):
+    """
+    Hash extension and return the appropriate colour
+
+    :param extension: str
+    :return: str
+    """
     return COLORS[int(md5(extension.encode()).hexdigest(), 16) % len(COLORS)]
 
 
