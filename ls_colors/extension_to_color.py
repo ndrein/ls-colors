@@ -15,7 +15,7 @@ COLORS = load(open(join(dirname(abspath(__file__)), 'colors.json')))['colors']
 
 
 def get_ls_lines(ls_args):
-    return check_output(['ls'] + ls_args, shell=True).decode('utf-8').splitlines()
+    return check_output(['ls'] + ls_args).decode('utf-8').splitlines()
 
 
 def get_ext(line):
