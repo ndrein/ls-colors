@@ -4,10 +4,9 @@ Modify system environment to colorize ls based on file extensions
 """
 
 from sys import argv
-from os import remove, system
+from os import remove
 from tempfile import NamedTemporaryFile
-from sys import exit, stdout
-from subprocess import check_output, call, PIPE
+from subprocess import check_output, CalledProcessError
 
 from extension_to_color import get_extension_to_color
 
@@ -55,4 +54,9 @@ def print_dircolors_code(ls_args):
     run_dircolors(get_dircolors(ext_to_color))
 
 if __name__ == '__main__':
-    print_dircolors_code(argv[1:])
+    try:
+        print_dircolors_code(argv[1:])
+    # If the arguments to ls are bad, then we get a CalledProcessError
+    # In that case, do nothing to the environment and let the call to `ls` handle it
+    except CalledProcessError:
+        pass
