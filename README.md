@@ -30,6 +30,5 @@ Identical to `ls`.
 Implementation
 --------------
 
-Hashes each file extension in the requested directories to produce a deterministic colour for each extension.
-Hidden files and files without extensions (eg. `.hidden`, `no-extension`) will not be coloured.
+Hashes each file extension in the requested directories to produce a deterministic colour for each extension.  Hidden files and files without extensions (eg. `.hidden`, `no-extension`) will not be coloured.
 
