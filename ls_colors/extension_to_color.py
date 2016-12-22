@@ -4,7 +4,7 @@ Associate a color with each extension in the requested directory
 """
 
 from hashlib import md5
-from subprocess import check_output
+from subprocess import check_output, DEVNULL
 from json import load
 from os.path import abspath, join, dirname
 
@@ -15,7 +15,7 @@ COLORS = load(open(join(dirname(abspath(__file__)), 'colors.json')))['colors']
 
 
 def get_ls_lines(ls_args):
-    return check_output(['ls'] + ls_args).decode('utf-8').splitlines()
+    return check_output(['ls'] + ls_args, stderr=DEVNULL).decode('utf-8').splitlines()
 
 
 def get_ext(line):
