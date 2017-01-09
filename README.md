@@ -9,7 +9,7 @@ Installation
 Clone the repository and use the script `bin/ls` as a replacement for `ls`:
 ```bash
 git clone git@github.com:ndrein/ls-colors.git
-echo `readlink -f .` >> ~/.bashrc
+echo "alias ls=`readlink -f ./ls-colors/bin/ls`" >> ~/.bashrc
 ```
 
 Note that `bin/ls` must not be moved outside of the `ls-colors` repository.
