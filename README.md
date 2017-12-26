@@ -8,7 +8,7 @@ Installation
 
 * Clone the repository to `/opt/`:
 ```shell
-git clone git@github.com:ndrein/ls-colors.git /opt/
+git clone git@github.com:ndrein/ls-colors.git /opt/ls-colors
 ```
 
 * Use the script `bin/ls` as an alias for `ls`.  This command uses `.bashrc` as your shell startup file, but you can put this alias wherever you need to:
